@@ -1,5 +1,5 @@
 /* ============================================
-   TANJUNGPINANG BUDAYA - JavaScript
+   TANJUNGPINANG BUDAYA - JavaScript (Clean)
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navToggle.classList.toggle('active');
     });
 
-    // Close menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- Scroll Reveal ----------
   const revealElements = document.querySelectorAll(
-    '.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children'
+    '.reveal, .reveal-scale, .stagger-children'
   );
 
   const revealObserver = new IntersectionObserver(
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const step = (timestamp) => {
         const progress = Math.min((timestamp - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3); // ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
         const current = Math.floor(eased * target);
         counter.textContent = current.toLocaleString('id-ID') + suffix;
 
@@ -136,23 +135,5 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.addEventListener('scroll', setActiveLink, { passive: true });
-
-  // ---------- Gallery Marquee Duplication ----------
-  const marquee = document.querySelector('.gallery-marquee');
-  if (marquee) {
-    const items = marquee.innerHTML;
-    marquee.innerHTML = items + items; // duplicate for seamless loop
-  }
-
-  // ---------- Parallax subtle effect on hero ----------
-  const heroBg = document.querySelector('.hero-bg img');
-  if (heroBg) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      if (scrolled < window.innerHeight) {
-        heroBg.style.transform = `scale(${1.05 + scrolled * 0.0001}) translateY(${scrolled * 0.15}px)`;
-      }
-    }, { passive: true });
-  }
 
 });
