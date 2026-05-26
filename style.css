@@ -1,12 +1,9 @@
-/* ============================================
-   TANJUNGPINANG BUDAYA - Design System
-   Theme: Blue Minimalist Elegant (Clean / No Images)
-   ============================================ */
 
-/* ---------- Google Fonts ---------- */
+
+/* Google Fonts (Playfair Display untuk judul, Inter untuk isi teksnya) */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ---------- CSS Custom Properties ---------- */
+/* CSS Custom Properties */
 :root {
   /* Primary Blues */
   --blue-50: #eff6ff;
@@ -182,9 +179,7 @@ ul {
   transform: translateY(0);
 }
 
-/* ============================================
-   NAVIGATION
-   ============================================ */
+/* Navigasi */
 .navbar {
   position: fixed;
   top: 0;
@@ -323,9 +318,7 @@ ul {
   background: var(--gray-700);
 }
 
-/* ============================================
-   HERO SECTION (Pure Gradient — No Image)
-   ============================================ */
+/* HERO SECTION (Pure Gradient — No Image)*/
 .hero {
   position: relative;
   min-height: 100vh;
@@ -563,9 +556,7 @@ ul {
   letter-spacing: 0.5px;
 }
 
-/* ============================================
-   ABOUT SECTION (Full-width text, no image)
-   ============================================ */
+/* Tentang Full-width text, no image */
 .about {
   padding: var(--section-padding) 0;
   background: var(--white);
@@ -630,9 +621,7 @@ ul {
   line-height: 1.5;
 }
 
-/* ============================================
-   BUDAYA / CULTURE SECTION (Icon cards, no images)
-   ============================================ */
+/*Budaya Icon cards, no images*/
 .culture {
   padding: var(--section-padding) 0;
   background: linear-gradient(180deg, var(--off-white) 0%, var(--blue-50) 100%);
@@ -724,9 +713,7 @@ ul {
   transform: translateX(3px);
 }
 
-/* ============================================
-   DESTINATIONS SECTION (Text-only layout)
-   ============================================ */
+/* Section Destinasi (Text-only layout) */
 .destinations {
   padding: var(--section-padding) 0;
   background: var(--white);
@@ -797,9 +784,7 @@ ul {
   line-height: 1.6;
 }
 
-/* ============================================
-   GURINDAM SECTION
-   ============================================ */
+/* Section Gurindam */
 .gurindam {
   padding: var(--section-padding) 0;
   background: linear-gradient(135deg, var(--blue-800) 0%, var(--blue-950) 100%);
@@ -926,9 +911,7 @@ ul {
   opacity: 0.8;
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
+/* Footer */
 .footer {
   background: var(--blue-950);
   color: var(--gray-300);
@@ -1021,9 +1004,7 @@ ul {
   color: var(--blue-300);
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+/* Responsive */
 @media (max-width: 1024px) {
   .hero-stats-inner {
     grid-template-columns: repeat(2, 1fr);
