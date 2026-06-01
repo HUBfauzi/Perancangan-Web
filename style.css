@@ -126,7 +126,7 @@ ul {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 600;
-  color: var(--blue-900);
+  color: rgb(212, 216, 219);
   line-height: 1.2;
   margin-bottom: 1.2rem;
 }
@@ -1148,23 +1148,7 @@ ul {
 
 .gurindam-slider-wrapper::before,
 .gurindam-slider-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 4rem;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.gurindam-slider-wrapper::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(248, 250, 252, 1), rgba(248, 250, 252, 0));
-}
-
-.gurindam-slider-wrapper::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(248, 250, 252, 1), rgba(248, 250, 252, 0));
+  display: none;
 }
 
 .gurindam-slider {
@@ -1174,12 +1158,15 @@ ul {
   gap: 1.25rem;
   overflow-x: auto;
   padding: 1rem 0 1rem 0;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  touch-action: pan-x;
+  cursor: grab;
+}
+
+.gurindam-slider.dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .gurindam-slider::-webkit-scrollbar {
@@ -1187,24 +1174,41 @@ ul {
 }
 
 .gurindam-card {
-  scroll-snap-align: start;
   min-width: 320px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.96));
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-lg);
   padding: 2rem;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, var(--gold), var(--gold-light)) 1;
+  border-image-slice: 1;
+  position: relative;
+  transition: transform 0.3s var(--ease-smooth), background 0.3s, box-shadow 0.3s;
+}
+
+.gurindam-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(212, 168, 67, 0.12);
 }
 
 .gurindam-card h3 {
   margin-bottom: 0.75rem;
-  font-size: 1.05rem;
-  color: var(--blue-900);
+  font-size: 1.1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 0.5px;
 }
 
 .gurindam-card p {
-  color: var(--gray-600);
-  line-height: 1.8;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.9;
+  font-size: 0.95rem;
 }
 
 .hero.culture-hero {
@@ -1232,6 +1236,41 @@ ul {
 
 @media (max-width: 768px) {
   .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sorotan Budaya - 3 kekuatan budaya centered */
+.gurindam .about-features {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+}
+
+.gurindam .about-feature {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.gurindam .about-feature:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.gurindam .about-feature-icon {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+}
+
+.gurindam .about-feature h4 {
+  color: var(--white);
+}
+
+.gurindam .about-feature p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 768px) {
+  .gurindam .about-features {
     grid-template-columns: 1fr;
   }
 }

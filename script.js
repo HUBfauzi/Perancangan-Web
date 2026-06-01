@@ -94,4 +94,77 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     statsObserver.observe(statsSection);
   }
+
+  // Gurindam Slider — Smooth mouse drag & momentum wheel scroll
+  const sliders = document.querySelectorAll('.gurindam-slider');
+  sliders.forEach(slider => {
+    // --- Drag to scroll ---
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('dragging');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('dragging');
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('dragging');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    // --- Momentum-based wheel scroll (smooth like trackpad) ---
+    let targetScroll = slider.scrollLeft;
+    let animating = false;
+
+    const smoothScroll = () => {
+      const diff = targetScroll - slider.scrollLeft;
+      if (Math.abs(diff) < 0.5) {
+        slider.scrollLeft = targetScroll;
+        animating = false;
+        return;
+      }
+      slider.scrollLeft += diff * 0.12;
+      requestAnimationFrame(smoothScroll);
+    };
+
+    slider.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      // Use deltaY for vertical mouse wheel, convert to horizontal
+      const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      targetScroll = Math.max(
+        0,
+        Math.min(
+          slider.scrollWidth - slider.clientWidth,
+          targetScroll + delta * 1.8
+        )
+      );
+      if (!animating) {
+        animating = true;
+        requestAnimationFrame(smoothScroll);
+      }
+    }, { passive: false });
+
+    // Keep targetScroll in sync when user scrolls via other means (trackpad, drag)
+    slider.addEventListener('scroll', () => {
+      if (!animating) {
+        targetScroll = slider.scrollLeft;
+      }
+    }, { passive: true });
+  });
 });
